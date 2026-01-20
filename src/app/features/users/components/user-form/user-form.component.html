@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl mx-auto">
         <!-- Header -->
-        <div class="text-center mb-8 opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]">
+        <div class="text-center mb-8 animate-fade-in">
             <h1
                 class="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
                 Create New User
@@ -11,7 +11,7 @@
 
         <!-- Form Card -->
         <div
-            class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-500 ease-out opacity-0 animate-[fadeIn_0.8s_ease-out_0.2s_forwards]">
+            class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-shadow duration-300">
             <form class="space-y-6">
                 <!-- Name Field -->
                 <div class="form-group">
@@ -26,7 +26,7 @@
                             </svg>
                         </div>
                         <input type="text" id="name" placeholder="John Doe"
-                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all duration-300 ease-in-out outline-none hover:border-indigo-300 hover:shadow-sm" />
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300" />
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@
                             </svg>
                         </div>
                         <input type="email" id="email" placeholder="john.doe@example.com"
-                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all duration-300 ease-in-out outline-none hover:border-indigo-300 hover:shadow-sm" />
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300" />
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@
                             </svg>
                         </div>
                         <input type="tel" id="phone" placeholder="+1 (555) 123-4567"
-                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all duration-300 ease-in-out outline-none hover:border-indigo-300 hover:shadow-sm" />
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300" />
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                             </svg>
                         </div>
                         <select id="role"
-                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all duration-300 ease-in-out outline-none hover:border-indigo-300 hover:shadow-sm appearance-none bg-white cursor-pointer">
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300 appearance-none bg-white cursor-pointer">
                             <option value="">Select a role</option>
                             <option value="admin">Administrator</option>
                             <option value="manager">Manager</option>
@@ -107,7 +107,7 @@
                             </svg>
                         </div>
                         <input type="text" id="department" placeholder="Engineering"
-                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all duration-300 ease-in-out outline-none hover:border-indigo-300 hover:shadow-sm" />
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300" />
                     </div>
                 </div>
 
@@ -140,7 +140,7 @@
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-3 pt-4">
                     <button type="submit"
-                        class="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 transform hover:scale-[1.01] transition-all duration-300 ease-out shadow-md hover:shadow-lg">
+                        class="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl">
                         <span class="flex items-center justify-center space-x-2">
                             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -150,7 +150,7 @@
                         </span>
                     </button>
                     <button type="reset"
-                        class="flex-1 bg-white text-gray-700 py-3 px-6 rounded-lg font-semibold border-2 border-gray-300 hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transform hover:scale-[1.01] transition-all duration-300 ease-out">
+                        class="flex-1 bg-white text-gray-700 py-3 px-6 rounded-lg font-semibold border-2 border-gray-300 hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transform hover:scale-[1.02] transition-all duration-200">
                         <span class="flex items-center justify-center space-x-2">
                             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
