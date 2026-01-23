@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserResponse } from '../../../../shared/models/user-response.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -6,6 +8,24 @@ import { Component } from '@angular/core';
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit {
+
+  ngOnInit(): void {
+    this.getAllUser();
+  }
+
+  users: UserResponse[] = [];
+
+  constructor(private userService: UserService) { }
+
+  getAllUser() {
+    this.userService.getUsers().subscribe(data => {
+      this.users = data;
+      console.log(this.users);
+    })
+  }
+
+
+
 
 }
