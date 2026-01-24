@@ -47,6 +47,23 @@
                     </div>
                 </div>
 
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Password <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <input type="password" id="password" placeholder="••••••••"
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300" />
+                    </div>
+                </div>
+
                 <!-- Phone Field -->
                 <div class="form-group">
                     <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
@@ -79,11 +96,11 @@
                         <select id="role"
                             class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300 appearance-none bg-white cursor-pointer">
                             <option value="">Select a role</option>
-                            <option value="admin">Administrator</option>
-                            <option value="manager">Manager</option>
-                            <option value="developer">Developer</option>
-                            <option value="designer">Designer</option>
-                            <option value="user">User</option>
+                            @for(role of userRoles; track $index){
+                            <option [value]="role.id">{{role.name}}</option>
+                            }@empty{
+                            <option value="">No roles available</option>
+                            }
                         </select>
                         <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                             <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,7 +114,7 @@
                 <!-- Department Field -->
                 <div class="form-group">
                     <label for="department" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Department
+                        Department <span class="text-red-500">*</span>
                     </label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -106,35 +123,52 @@
                                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
                         </div>
-                        <input type="text" id="department" placeholder="Engineering"
-                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300" />
+                        <select id="department"
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300 appearance-none bg-white cursor-pointer">
+                            <option value="">Select a department</option>
+                            @for(department of departments; track $index){
+                            <option [value]="department.id">{{department.name}}</option>
+                            }@empty{
+                            <option value="">No departments available</option>
+                            }
+                        </select>
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Status Toggle -->
+                <!-- Status Selection Field -->
                 <div class="form-group">
-                    <label
-                        class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
-                        <div class="flex items-center space-x-3">
-                            <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <label for="status" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Account Status <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <div>
-                                <span class="text-sm font-semibold text-gray-700">Active Status</span>
-                                <p class="text-xs text-gray-500">Enable this user account</p>
-                            </div>
                         </div>
-                        <div class="relative">
-                            <input type="checkbox" class="sr-only peer" id="status" checked>
-                            <div
-                                class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-indigo-600 peer-focus:ring-2 peer-focus:ring-indigo-300 transition-colors duration-200">
-                            </div>
-                            <div
-                                class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-200 peer-checked:translate-x-5">
-                            </div>
+                        <select id="status"
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 outline-none hover:border-indigo-300 appearance-none bg-white cursor-pointer">
+                            <option value="">Select a status</option>
+                            @for(status of userStatuses; track $index){
+                            <option [value]="status.id">{{status.name}}</option>
+                            }@empty{
+                            <option value="">No status available</option>
+                            }
+                        </select>
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
                         </div>
-                    </label>
+                    </div>
                 </div>
 
                 <!-- Action Buttons -->

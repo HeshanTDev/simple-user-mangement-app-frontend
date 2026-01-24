@@ -3,7 +3,7 @@ export interface UserResponse {
     name: string;
     email: string;
     mobile: string;
-    userType: {
+    userRole: {
         id: number;
         name: string;
     };

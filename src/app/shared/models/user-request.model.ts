@@ -3,7 +3,7 @@ export interface UserRequest {
     email: string;
     phone: string;
     password: string
-    userTypeId: number;
+    userRoleId: number;
     userStatus: number;
     departmentId: number;
 }
