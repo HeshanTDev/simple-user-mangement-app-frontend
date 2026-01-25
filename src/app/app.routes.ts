@@ -7,5 +7,6 @@ export const routes: Routes = [
   { path: '', component: UserListComponent },
   { path: 'view', component: UserListComponent },
   { path: 'add', component: UserFormComponent },
+  { path: 'edit/:id', component: UserFormComponent },
 
 ];

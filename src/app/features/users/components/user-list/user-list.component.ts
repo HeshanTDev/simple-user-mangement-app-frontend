@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserResponse } from '../../../../shared/models/user-response.model';
 import { UserService } from '../services/user.service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-user-list',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
 })
