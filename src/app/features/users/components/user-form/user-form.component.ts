@@ -4,6 +4,8 @@ import { CommonModel } from '../../../../shared/models/common.model';
 import { UserService } from '../services/user.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserRequest } from '../../../../shared/models/user-request.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { routes } from '../../../../app.routes';
 
 @Component({
     selector: 'app-user-form',
@@ -17,15 +19,37 @@ export class UserFormComponent {
     userStatuses: CommonModel[] = [];
     departments: CommonModel[] = [];
 
+    updateId = 0;
+
     userForm!: FormGroup;
 
     constructor(
         private metaService: UserMetaService,
         private userService: UserService,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private activiatedRoute: ActivatedRoute,
+        private router: Router
     ) { }
     ngOnInit(): void {
         this.loadDropDowns();
+        this.activiatedRoute.params.subscribe((params) => {
+            if (params['id']) {
+                this.updateId = Number(params['id']);
+                this.userService.getUserById(Number(params['id'])).subscribe((res) => {
+                    const userCreateRequest: UserRequest = {
+                        name: res.name,
+                        email: res.email,
+                        mobile: res.mobile,
+                        password: res.password,
+                        userRoleId: res.userRole.id,
+                        userStatusId: res.userStatus.id,
+                        departmentId: res.department.id,
+                    }
+                    console.log(res.userStatus.id);
+                    this.userForm.patchValue(userCreateRequest);
+                })
+            }
+        })
         this.userForm = this.formBuilder.group({
             name: ['', [
                 Validators.required,
@@ -51,13 +75,28 @@ export class UserFormComponent {
                 Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).*')
             ]],
             userRoleId: ['', Validators.required],
-            userStatus: ['', Validators.required],
+            userStatusId: ['', Validators.required],
             departmentId: ['', Validators.required],
         });
         console.log(this.userForm.value);
     }
     get formControls() {
         return this.userForm.controls;
+    }
+
+
+    processFrom() {
+        this.activiatedRoute.params.subscribe((params) => {
+            if (params['id']) {
+                this.updateUser();
+                this.resetForm();
+                this.router.navigate(['/view']);
+            } else {
+                this.addUser();
+                this.resetForm();
+                this.router.navigate(['/view']);
+            }
+        })
     }
 
     addUser() {
@@ -68,7 +107,7 @@ export class UserFormComponent {
                 mobile: this.userForm.value.mobile,
                 password: this.userForm.value.password,
                 userRoleId: Number(this.userForm.value.userRoleId),
-                userStatusId: Number(this.userForm.value.userStatus),
+                userStatusId: Number(this.userForm.value.userStatusId),
                 departmentId: Number(this.userForm.value.departmentId),
             }
 
@@ -78,6 +117,28 @@ export class UserFormComponent {
             })
         }
     }
+
+
+    updateUser() {
+        if (this.userForm.valid) {
+            const newUser: UserRequest = {
+                name: this.userForm.value.name,
+                email: this.userForm.value.email,
+                mobile: this.userForm.value.mobile,
+                password: this.userForm.value.password,
+                userRoleId: Number(this.userForm.value.userRoleId),
+                userStatusId: Number(this.userForm.value.userStatusId),
+                departmentId: Number(this.userForm.value.departmentId),
+            }
+
+            this.userService.updateUser(this.updateId, newUser).subscribe((res) => {
+                console.log(res);
+                this.resetForm();
+            })
+        }
+    }
+
+
     resetForm() {
         this.userForm.reset();
     }
